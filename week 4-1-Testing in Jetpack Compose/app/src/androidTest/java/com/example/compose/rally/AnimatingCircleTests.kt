@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.test.filters.SdkSuppress
 import com.example.compose.rally.ui.components.AnimatedCircle
 import com.example.compose.rally.ui.components.RallyTopAppBar
+import com.example.compose.rally.ui.overview.OverviewBody
 import com.example.compose.rally.ui.theme.RallyTheme
 import org.junit.Rule
 import org.junit.Test
@@ -140,5 +141,21 @@ class AnimatingCircleTests {
                 )
             }
         }
+    }
+}
+
+class OverviewScreenTest{
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
+
+    @Test
+    fun overviewScreen_alertsDisplayed() {
+        composeTestRule.setContent {
+            OverviewBody()
+        }
+
+        composeTestRule.onNodeWithText("Alerts")
+            .assertIsDisplayed()
     }
 }
