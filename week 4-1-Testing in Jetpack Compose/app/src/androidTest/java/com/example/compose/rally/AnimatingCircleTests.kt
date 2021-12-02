@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import androidx.test.filters.SdkSuppress
 import com.example.compose.rally.ui.components.AnimatedCircle
@@ -61,6 +62,21 @@ class AnimatingCircleTests {
 
         composeTestRule.onNodeWithContentDescription(RallyScreen.Accounts.name)
             .assertIsSelected()
+    }
+
+    @Test
+    fun rallyTopAppBarTest_currentLabelExists() {
+        val allScreens = RallyScreen.values().toList()
+        composeTestRule.setContent {
+            RallyTopAppBar(
+                allScreens = allScreens,
+                onTabSelected = {},
+                currentScreen = RallyScreen.Accounts
+            )
+        }
+
+        composeTestRule.onNodeWithContentDescription(RallyScreen.Accounts.name)
+            .assertExists()
     }
 
     @Test
